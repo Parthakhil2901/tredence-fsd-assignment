@@ -30,7 +30,9 @@ This assignment demonstrates strong skills in **frontend engineering**, **state 
 ### 🎨 Visual Workflow Canvas
 - Drag-and-drop interface powered by ReactFlow  
 - Zoom, pan, edge creation, and minimap support  
-- Clean, professional node designs for readability  
+- Clean, professional node designs for readability
+- <img width="1365" height="687" alt="Screenshot 2025-12-11 032054" src="https://github.com/user-attachments/assets/e3dc14bd-94eb-412d-b6f7-972305c895d8" />
+
 
 ### 🔧 Node Types Implemented
 - **Start Node** – Entry point of the workflow  
@@ -49,12 +51,12 @@ This assignment demonstrates strong skills in **frontend engineering**, **state 
 - Performs validation  
 - Generates ordered step execution logs  
 - Displays detailed success/error status for each step  
+<img width="1365" height="687" alt="Screenshot 2025-12-11 032431" src="https://github.com/user-attachments/assets/2b973837-d4c3-433a-810b-163003cd195d" />
 
 ### ⚡ State Management with Zustand
 - Optimized selectors  
 - No unnecessary rerenders  
-- Pure, predictable state transitions  
-
+- Pure, predictable state transitions
 ---
 
 ## 🧠 Notable Bug Fix – Infinite Render Loop
@@ -82,7 +84,7 @@ The canvas became stable, performance improved significantly, and the entire UI 
 ---
 
 ## 📂 Project Structure
-
+```
 src/
 ├── api/
 │ ├── automations.js # Mock automation list
@@ -107,7 +109,7 @@ src/
 │
 ├── App.jsx # Main layout
 └── main.jsx # Entry file for Vite
-
+```
 
 
 
