@@ -1,123 +1,150 @@
-🧩 Tredence Full-Stack Developer Internship – Workflow Builder Assignment
-🔗 Live Demo:
+# 🧩 Tredence Full-Stack Developer Internship – Workflow Builder Assignment
 
-https://tredence-fsd-intern-assignment-kpaa3tq7h.vercel.app
+### 🔗 **Live Demo:**  
+https://tredence-fsd-intern-assignment-kpaa3tq7h.vercel.app  
 
-🔗 GitHub Repo:
+### 🔗 **GitHub Repository:**  
+https://github.com/Parthakhil2901/tredence-fsd-assignment  
 
-https://github.com/Parthakhil2901/tredence-fsd-assignment
+---
 
-📌 Overview
+## 📌 Overview
 
-This project is a drag-and-drop Workflow Builder built using React, ReactFlow, Zustand, and Vite.
-The tool enables users to:
+This project is a **drag-and-drop Workflow Builder** built using **React, ReactFlow, Zustand, and Vite**.
 
-Create workflow nodes (Start, Task, Approval, Automated Step, End)
+The application allows users to visually construct workflows by:
 
-Drag & drop them on a visual canvas
+- Creating workflow nodes (Start, Task, Approval, Automated Step, End)  
+- Dragging and dropping nodes onto a canvas  
+- Connecting nodes to define workflow paths  
+- Configuring each node with dynamic metadata  
+- Running full workflow simulation with step-by-step logs  
+- Validating workflow structure and detecting errors  
 
-Connect nodes to define workflow paths
+This assignment demonstrates strong skills in **frontend engineering**, **state management**, **UI/UX design**, and **problem-solving**.
 
-Configure each node with dynamic metadata
+---
 
-Simulate workflow execution via a mock API
+## 🚀 Features
 
-Validate and display execution logs in real time
+### 🎨 Visual Workflow Canvas
+- Drag-and-drop interface powered by ReactFlow  
+- Zoom, pan, edge creation, and minimap support  
+- Clean, professional node designs for readability  
 
-This demonstrates strong skills in frontend engineering, state management, UI/UX, and problem solving.
+### 🔧 Node Types Implemented
+- **Start Node** – Entry point of the workflow  
+- **Task Node** – Manual task with assignee, description, and deadlines  
+- **Approval Node** – Role-based approval with thresholds  
+- **Automated Step Node** – Linked to automation actions with dynamic parameters  
+- **End Node** – Final step with summary options  
 
-🚀 Features
-✔ Drag-and-Drop Canvas
+### 📝 Dynamic Node Configuration Panel
+- Updates instantly when a node is selected  
+- Adaptive form UI based on node type  
+- Handles editable metadata, custom fields, automation parameters, and more  
 
-Built with ReactFlow — supports adding, positioning, editing, and linking nodes.
+### 🧪 Workflow Simulation Engine
+- Sends workflow JSON to mock `/simulate` API  
+- Performs validation  
+- Generates ordered step execution logs  
+- Displays detailed success/error status for each step  
 
-✔ Node Types Implemented
+### ⚡ State Management with Zustand
+- Optimized selectors  
+- No unnecessary rerenders  
+- Pure, predictable state transitions  
 
-Start Node
+---
 
-Task Node
+## 🧠 Notable Bug Fix – Infinite Render Loop
 
-Approval Node
+During development, ReactFlow repeatedly threw:
 
-Automated Step (fetches mock actions dynamically)
+> **Error: Maximum update depth exceeded**
 
-End Node
+The root causes were:
 
-✔ Node Configuration Panel
+- `nodeTypes` being recreated on every render  
+- Zustand selectors triggering unnecessary state reads  
+- Node selection updating state during render cycle  
 
-Dynamic UI updates based on the selected node type.
+### ✔ How I solved it
 
-✔ Workflow Simulation
+- Moved `nodeTypes` outside of the component scope  
+- Added stable selectors to avoid uncontrolled updates  
+- Ensured `selectNode()` does not update the store during ReactFlow events  
+- Eliminated cyclic state updates inside React hooks  
 
-Runs /simulate API with:
+**Result:**  
+The canvas became stable, performance improved significantly, and the entire UI rendered without recursive update issues.
 
-Ordered execution
+---
 
-Error checks
+## 📂 Project Structure
 
-Step-by-step result logs
-
-✔ State Management
-
-Powered by Zustand with selectors to prevent rerender loops.
-
-✔ Fully Deployable
-
-Hosted on Vercel with automatic builds using Vite.
-
-🛠️ Tech Stack
-Area	Technology
-Frontend Framework	React (Vite)
-Canvas Engine	ReactFlow
-State Management	Zustand
-Deployment	Vercel
-UI	Custom Components + ReactFlow Defaults
-API Mocking	Local static JSON + mock simulate API
-🧠 Tricky Frontend Bug I Solved
-
-Infinite render loop in ReactFlow + Zustand integration
-I initially ran into a “Maximum update depth exceeded” error caused by:
-
-Passing newly created nodeTypes on every render
-
-Calling selection logic that triggered multiple store updates
-
-Using deep selectors without memoization
-
-Fix:
-I stabilized all selectors, moved nodeTypes outside the component, and ensured store functions don’t trigger recursive updates. This removed render loops and made the UI stable even with many nodes.
-
-📂 Folder Structure
 src/
- ├── api/
- │   ├── automations.js
- │   └── simulate.js
- ├── components/
- │   ├── Canvas.jsx
- │   ├── NodeConfigPanel.jsx
- │   ├── Sidebar.jsx
- │   └── SimulationPanel.jsx
- ├── hooks/
- │   └── useWorkflowStore.js
- ├── nodes/
- │   ├── StartNode.jsx
- │   ├── TaskNode.jsx
- │   ├── ApprovalNode.jsx
- │   ├── AutoNode.jsx
- │   ├── EndNode.jsx
- │   └── nodeTypes.js
- ├── App.jsx
- ├── main.jsx
+├── api/
+│ ├── automations.js # Mock automation list
+│ └── simulate.js # Mock workflow simulation API
+│
+├── components/
+│ ├── Canvas.jsx # Main ReactFlow canvas
+│ ├── NodeConfigPanel.jsx # Right panel for node editing
+│ ├── Sidebar.jsx # Left panel node palette
+│ └── SimulationPanel.jsx # Bottom panel for simulation logs
+│
+├── hooks/
+│ └── useWorkflowStore.js # Zustand store for workflow state
+│
+├── nodes/
+│ ├── StartNode.jsx
+│ ├── TaskNode.jsx
+│ ├── ApprovalNode.jsx
+│ ├── AutoNode.jsx
+│ ├── EndNode.jsx
+│ └── nodeTypes.js # Mapping node types → components
+│
+├── App.jsx # Main layout
+└── main.jsx # Entry file for Vite
 
-📸 Screenshots
-<img width="1365" height="679" alt="Screenshot 2025-12-11 031436" src="https://github.com/user-attachments/assets/00491bd1-9b73-4529-a145-dacb34d9e60c" />
-<img width="1365" height="687" alt="Screenshot 2025-12-11 032054" src="https://github.com/user-attachments/assets/7f55d87c-9c9a-4fb5-81b1-e8f56fceecbe" />
 
-<img width="1365" height="687" alt="Screenshot 2025-12-11 032431" src="https://github.com/user-attachments/assets/403c88e1-f447-45bf-90b1-cf291e8bb3bb" />
 
-📬 Contact
 
-Akhilesh Shukla (Parth)
-B.Tech CSE, SRMIST
-LinkedIn:linkedin.com/in/akhilesh-shukla-5b7283248
-GitHub: https://github.com/Parthakhil2901
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | React (Vite) |
+| Canvas Engine | ReactFlow |
+| State Management | Zustand |
+| API Mocking | Local JSON + simulate endpoint |
+| Deployment | Vercel |
+| Styling | Custom CSS + inline styles |
+
+---
+
+## 👨‍💻 Author
+
+**Akhilesh Shukla (Parth)**  
+B.Tech CSE – SRM Institute of Science and Technology  
+
+🔗 GitHub: https://github.com/Parthakhil2901  
+🔗 LinkedIn: linkedin.com/in/akhilesh-shukla-5b7283248
+
+---
+
+## 🌟 Conclusion
+
+This project showcases the ability to:
+
+- Architect scalable React applications  
+- Work with component-driven UI systems  
+- Handle complex state management patterns  
+- Debug production-level frontend issues  
+- Create clean, maintainable, user-friendly interfaces  
+
+Thank you for reviewing my submission!
+
